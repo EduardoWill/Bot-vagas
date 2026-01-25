@@ -1,14 +1,19 @@
 #roda o bot
+import os
 from telebot import TeleBot
+from dotenv import load_dotenv
 
-bot = TeleBot('8282196893:AAHW33iMoX6a5QVP9HvUTmsoTErswILo9AI')
+load_dotenv()
+token = os.getenv('BOT_TOKEN')
+
+bot = TeleBot(token)
 
 @bot.message_handler(commands=['start','help']) 
 def commands(msg):
     if msg.text == '/start':
-        bot.send_message(msg.chat.id,"Opa!")
+        bot.send_message(msg.chat.id,"Opa fala!")
     elif msg.text =='/help':
         bot.send_message(msg.chat.id,"Lista de comandos")
 
 
-bot.infinity.polling()
+bot.infinity_polling()
